@@ -245,3 +245,17 @@ footer a:hover{color:#b7cc8f}
 .case-screen-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:800px;margin:24px auto 40px;align-items:start}
 .case-gallery .case-screen-grid figure{min-width:0;width:100%;margin:0!important}
 @media(max-width:700px){.case-screen-grid{grid-template-columns:1fr;gap:24px}}
+
+/* Content bounds preserve full-bleed section backgrounds. */
+@media(min-width:701px){
+ body>header,.hero,.work,.about,.contact,body>footer,#menu{padding-left:max(4%,calc((100% - 1280px)/2));padding-right:max(4%,calc((100% - 1280px)/2))}
+ .hero{max-width:none;margin:0}
+}
+.project{width:100%;max-width:560px;justify-self:center;height:auto}
+.project-dialog .detail-inner{width:92%;max-width:1280px;margin-inline:auto;padding-inline:0}
+.case-gallery>.case-story,.case-gallery>.case-results,.case-gallery>.case-ending,.case-gallery>.case-deliverables{width:100%;max-width:800px;margin-inline:auto}
+.screen-preview{max-height:1000px;overflow:hidden}
+.screen-preview.is-cropped{mask-image:linear-gradient(to bottom,#000 80%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent 100%)}
+.case-gallery img.is-loading{background:#e2e3da;min-height:120px}
+.image-modal-panel{transform-origin:top left}
+@media(max-width:700px){.project-dialog .detail-inner{width:88%}}
