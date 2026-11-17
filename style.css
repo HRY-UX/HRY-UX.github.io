@@ -206,10 +206,6 @@ footer a:hover{color:#b7cc8f}
 .about a:focus-visible,footer a:focus-visible{outline-color:#b7cc8f}
 @media(max-width:700px){.about .client-list.client-logos{gap:12px}}
 
-/* Keep project artwork comfortably sized on desktop. */
-@media(min-width:1101px){
- .case-gallery figure{max-width:800px;margin-left:auto!important;margin-right:auto!important}
-}
 
 .image-wrap img.bfd-cover{object-position:center top}
 
@@ -243,7 +239,7 @@ footer a:hover{color:#b7cc8f}
 .case-gallery video{display:block;width:100%;height:auto;background:#111}
 
 /* Additional Edgio screens, paired beneath the walkthrough. */
-.case-screen-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:800px;margin:24px auto 40px;align-items:start}
+.case-screen-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:none;margin:24px auto 40px;align-items:start}
 .case-gallery .case-screen-grid figure{min-width:0;width:100%;margin:0!important}
 @media(max-width:700px){.case-screen-grid{grid-template-columns:1fr;gap:24px}}
 
@@ -260,3 +256,42 @@ footer a:hover{color:#b7cc8f}
 .case-gallery img.is-loading{background:#e2e3da;min-height:120px}
 .image-modal-panel{transform-origin:top left}
 @media(max-width:700px){.project-dialog .detail-inner{width:88%}}
+
+/* Artwork fills the available gallery width. */
+.case-gallery figure{width:100%;max-width:none;margin-inline:auto}
+.case-gallery img{max-width:100%}
+
+.case-gallery img[role="button"]{cursor:zoom-in}
+.case-gallery img[role="button"]:focus-visible{outline:2px solid #72814d;outline-offset:4px}
+
+/* Full artwork with a proportional fade for images taller than 1:2. */
+.case-image-expand{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;overflow:hidden}
+.case-image-expand img{width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
+.case-image-expand{position:relative;padding-bottom:12px}
+.case-image-viewport{display:block;overflow:hidden}
+.case-image-expand.is-cropped>.case-image-viewport{max-height:var(--image-limit);mask-image:linear-gradient(to bottom,#000 85%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 85%,transparent 100%)}
+.case-image-expand-label{display:none}
+.case-image-expand.is-cropped>.case-image-expand-label{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border:1px solid #22241f;border-radius:999px;background:#22241f;color:#f1f0e8;font-size:14px;font-weight:600;line-height:1;box-shadow:0 3px 12px #0002;white-space:nowrap}
+.case-image-expand-label strong{font-size:26px;font-weight:800;line-height:20px}
+.case-image-expand:hover .case-image-expand-label,.case-image-expand:focus-visible .case-image-expand-label{background:#3c4932;border-color:#3c4932}
+
+.case-gallery .case-static-crop img{aspect-ratio:12/9;height:auto;object-fit:cover;object-position:top;mask-image:none;-webkit-mask-image:none}
+
+/* Shared tablet edges; progress sits in the outer gutter. */
+@media(min-width:701px) and (max-width:1100px){
+ .project-dialog .detail-inner{width:84%;margin-inline:auto}
+ .project-toolbar{padding-inline:8%}
+ .floating-details{left:8%;right:8%}
+ .case-layout{display:block}
+ .case-gallery{width:100%;padding-inline:0}
+ .case-progress{position:fixed;right:calc(4% - 11px);top:180px;width:22px;z-index:8}
+}
+
+/* Keep navigation, disclosures, artwork and prose on the same responsive edges. */
+@media(max-width:1100px){
+ .floating-details .details-toggle,.floating-details .details-content-inner{padding-left:0;padding-right:0}
+ .case-gallery>.case-story,.case-gallery>.case-results,.case-gallery>.case-ending,.case-gallery>.case-deliverables{width:100%;max-width:none;margin-inline:0}
+}
+@media(min-width:1101px){
+ .project-toolbar{padding-inline:max(4%,calc((100% - 1280px)/2))}
+}
