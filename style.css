@@ -12,6 +12,7 @@
 
 /* About, experience and contact */
 .career-section{margin-top:64px}
+.skills-section>.services{margin-top:0}
 .career-section>h3{font-size:12px;font-weight:400;letter-spacing:1px;text-transform:uppercase;margin:0 0 25px}
 .career-row{border-top:1px solid #c9cbbf;padding:24px 0;display:flex;justify-content:space-between;gap:24px}
 .career-row h4{font-weight:400;font-size:21px;letter-spacing:-.5px;margin:0 0 8px}
