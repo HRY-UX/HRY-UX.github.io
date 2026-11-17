@@ -264,16 +264,19 @@ footer a:hover{color:#b7cc8f}
 .case-gallery img[role="button"]{cursor:zoom-in}
 .case-gallery img[role="button"]:focus-visible{outline:2px solid #72814d;outline-offset:4px}
 
-/* Full artwork with a proportional fade for images taller than 1:2. */
+/* Full artwork with a proportional fade for images taller than 10:12. */
 .case-image-expand{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;overflow:hidden}
 .case-image-expand img{width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
 .case-image-expand{position:relative;padding-bottom:12px}
 .case-image-viewport{display:block;overflow:hidden}
-.case-image-expand.is-cropped>.case-image-viewport{max-height:var(--image-limit);mask-image:linear-gradient(to bottom,#000 85%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 85%,transparent 100%)}
+.case-image-expand.is-cropped>.case-image-viewport{max-height:var(--image-limit);mask-image:linear-gradient(to bottom,#000 85%,rgb(0 0 0 / var(--image-fade-end)) 100%);-webkit-mask-image:linear-gradient(to bottom,#000 85%,rgb(0 0 0 / var(--image-fade-end)) 100%)}
 .case-image-expand-label{display:none}
-.case-image-expand.is-cropped>.case-image-expand-label{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border:1px solid #22241f;border-radius:999px;background:#22241f;color:#f1f0e8;font-size:14px;font-weight:600;line-height:1;box-shadow:0 3px 12px #0002;white-space:nowrap}
-.case-image-expand-label strong{font-size:26px;font-weight:800;line-height:20px}
-.case-image-expand:hover .case-image-expand-label,.case-image-expand:focus-visible .case-image-expand-label{background:#3c4932;border-color:#3c4932}
+.case-image-expand.is-cropped>.case-image-expand-label{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border:1px solid #999d8d;border-radius:30px;background:#f1f0e8;color:#22241f;font-size:12px;font-weight:400;line-height:14px;white-space:nowrap;box-shadow:none;filter:none}
+.case-image-expand-label .expand-plus{position:relative;display:block;width:10px;height:10px;font-size:0;flex:none}
+.case-image-expand-label .expand-plus::before,.case-image-expand-label .expand-plus::after{content:"";position:absolute;background:currentColor}
+.case-image-expand-label .expand-plus::before{width:10px;height:1px;left:0;top:4.5px}
+.case-image-expand-label .expand-plus::after{width:1px;height:10px;left:4.5px;top:0}
+.case-image-expand:hover .case-image-expand-label,.case-image-expand:focus-visible .case-image-expand-label{background:#f1f0e8;border-color:#51564b}
 
 .case-gallery .case-static-crop img{aspect-ratio:12/9;height:auto;object-fit:cover;object-position:top;mask-image:none;-webkit-mask-image:none}
 
@@ -295,3 +298,14 @@ footer a:hover{color:#b7cc8f}
 @media(min-width:1101px){
  .project-toolbar{padding-inline:max(4%,calc((100% - 1280px)/2))}
 }
+
+/* Fade case-study artwork only after its image has loaded and appeared. */
+@property --image-fade-end{syntax:"<number>";inherits:false;initial-value:1}
+.case-image-viewport{--image-fade-end:1;transition:--image-fade-end .45s ease}
+.image-effects-ready>.case-image-viewport{--image-fade-end:0}
+@media(prefers-reduced-motion:reduce){.case-image-viewport{transition:none}}
+
+.case-image-expand{appearance:none;-webkit-appearance:none;box-shadow:none;filter:none}
+
+.case-image-expand.has-clean-crop img{aspect-ratio:12/9;object-fit:cover;object-position:top}
+.case-image-expand.has-clean-crop>.case-image-viewport{mask-image:none;-webkit-mask-image:none}
